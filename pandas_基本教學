@@ -1,0 +1,49 @@
+import pandas as pd
+import numpy as np
+date=pd.date_range('20160101',periods=6)
+df=pd.DataFrame({'A':1,
+'B':pd.Timestamp(20130212),
+'C':pd.Series(1,index=list(range(5)),dtype='float32'),
+'E':pd.Categorical(["test","train","test","fdf","df"])
+})
+
+df2=df.sort_values(by='E')
+
+df3=pd.DataFrame(np.arange(24).reshape(6,4),index=date,columns=['A','B','C','D',])
+print(df3['20160101':'20160104']) #印出20160104-20160107資料
+
+##
+##print(df3.A) #印出columns 'A'的資料
+
+##標籤篩選
+
+#print(df3.loc['20160101'])  #loc等於label  
+
+#print(df3.loc[:,['A','B']]) #選擇 Columns A以及B的所有項目
+##
+
+##數字篩選
+#print(df3.iloc[[1,2],:3])   #指定位置用法
+
+
+##綜和塞選 數字跟標籤一起用
+#print(df3.ix[:3,['A','B']])
+
+
+
+##print(df3[df3.A<8]) ## 篩選columns'A'小於8的值
+
+##df3.loc['20160101','A']=111 ###用label方式指定該位置的值
+##print(df3)  
+
+##df3.iloc[2,2]=111 ##用數字方式指定該位置的值
+##print(df3)
+
+##df3.A[df3.A>4]=0   ##把columns 'A' 所有大於4的值改成0
+##print(df3)
+
+##df3['E']=np.nan  ##新增columns 'E' 所有值等於NAN
+##print(df3)
+
+##df3['F']=pd.Series([1,2,3,4,5,6],index=pd.date_range('20160101',periods=6)) #新增columns 'F'
+##print(df3)
